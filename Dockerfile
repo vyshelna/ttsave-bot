@@ -8,4 +8,5 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
-CMD ["python", "main.py"]
+# при каждом запуске обновляем yt-dlp до свежей версии (если не вышло — запускаемся со старой)
+CMD ["sh", "-c", "pip install --no-cache-dir -U yt-dlp || true; python main.py"]
